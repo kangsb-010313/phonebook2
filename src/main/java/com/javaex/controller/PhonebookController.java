@@ -26,6 +26,13 @@ public class PhonebookController extends HttpServlet {
 		System.out.println("PhonebookController");
 		
 		
+		//db 데이터 가져온다 --> List
+		
+		
+		//html + List
+		
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
