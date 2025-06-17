@@ -109,7 +109,7 @@ public class PhonebookController extends HttpServlet {
 			*/
 			
 			
-			
+		////////////////////////////////////////////////////////////////////////
 		}else if("delete".equals(action)) {
 			System.out.println("삭제");
 			
@@ -124,6 +124,17 @@ public class PhonebookController extends HttpServlet {
 			//리다이렉트 list 요청해주세요
 			//http://localhost:8080/phonebook2/pbc?action=list
 			//response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
+			
+			
+		////////////////////////////////////////////////////////////////////////
+		}else if("mform".equals(action)) {//수정폼
+			System.out.println("수정폼");
+			
+			
+	
+		////////////////////////////////////////////////////////////////////////
+		}else if("modify".equals(action)) {//수정
+			System.out.println("수정");
 			
 			
 		}
