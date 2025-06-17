@@ -5,7 +5,7 @@
 <%@ page import="com.javaex.vo.PersonVO" %>
     
 <%
-	List<PersonVO> personList = (List<PersonVO>)request.getAttribute("pList");	
+	List<PersonVO> personList = (List<PersonVO>)request.getAttribute("pList");	//pList -> pbc의 pList / jsp 넣어쓸 때
 	System.out.println("여기는 jsp입니다.");
 	System.out.println(personList);
 
@@ -52,6 +52,14 @@
 		<%
 			}
 		%>
+		
+		[주소록 작성폼 이동] : 주소창에 aaa.html 입력하시고 엔터입력
+		<br>
+		<a href= "">주소록 작성폼 이동</a>
+		
+		
+		
+		
 		
 	
 
