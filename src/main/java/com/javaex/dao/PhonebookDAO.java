@@ -24,7 +24,6 @@ public class PhonebookDAO {
 	
 	//생성자
 	public PhonebookDAO() {
-		
 	}
 	
 	//메소드 gs
@@ -114,6 +113,93 @@ public class PhonebookDAO {
 		this.close();
 		
 		return personList;
+	}//select
+	
+	
+	// 등록하기 //////////////////////////////////////////////
+	public int personInsert(PersonVO personVO) {
+		
+		//확인용
+		System.out.println("personInsert()");
+		
+		int count = -1;
+		
+		this.connect();
+		
+		try {
+			// 3. SQL문 준비 / 바인딩 / 실행
+			//SQL문 준비
+			String query = "";
+				   query += " insert into person ";
+				   query += " values(null, ?, ?, ?) ";
+
+			//바인딩
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, personVO.getName());
+			pstmt.setString(2, personVO.getHp());
+			pstmt.setString(3, personVO.getCompany());
+		 
+			//실행
+			count = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		
+		
+		this.close();
+		return count;
+		
+		
 	}
+	
+	
+	// 삭제하기 //////////////////////////////////////////////
+	public int personDelete(int no) {
+		
+		System.out.println("personDelete");
+		
+		int count = -1;
+		
+		this.connect();
+		
+		
+		try {
+			// 3. SQL문 준비 / 바인딩 / 실행
+			
+			//SQL문 준비
+			String query = "";
+				   query += " delete from person ";
+				   query += " where person_id = ? ";
+			
+			
+			//바인딩
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			//실행
+			count = pstmt.executeUpdate();
+			
+			//4. 결과처리
+			System.out.println(count + "건 삭제되었습니다.");
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		
+		this.close();
+		return count;
+		
+		
+	}
+		
+		
+		
+		
+		
+	
+	
 	
 }

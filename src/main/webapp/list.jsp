@@ -34,7 +34,10 @@
 			<tbody>
 				<tr>
 					<td>이름(name)</td>
-					<td><%= personList.get(i).getName() %></td>
+					<td>
+						<%= personList.get(i).getName() %>
+						<%= personList.get(i).getPersonId() %>
+					</td>
 				</tr>
 				<tr>
 					<td>핸드폰(hp)</td>
@@ -43,6 +46,14 @@
 				<tr>
 					<td>회사(company)</td>
 					<td><%= personList.get(i).getCompany() %></td>
+				</tr>
+				<tr>
+					<td>[수정폼으로 이동]</td>
+					<td>
+						<a href= "http://localhost:8080/phonebook2/pbc?action=delete&no=<%= personList.get(i).getPersonId() %>">
+						[삭제] <%= personList.get(i).getPersonId() %>
+						</a>
+					</td>	 <!-- 원래 버튼으로 해야된다. 자바스크립트필요. 안배워서 a태그로 구현 -->
 				</tr>
 			</tbody>
 		
@@ -56,11 +67,7 @@
 		[주소록 작성폼 이동] : 주소창에 aaa.html 입력하시고 엔터입력
 		<br>
 		<a href= "">주소록 작성폼 이동</a>
-		
-		
-		
-		
-		
+
 	
 
 	</body>

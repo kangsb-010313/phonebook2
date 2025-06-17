@@ -12,6 +12,13 @@ public class PersonVO {
 	//생성자
 	public PersonVO() {
 	}
+	
+	public PersonVO(String name, String hp, String company) {
+		this.name = name;
+		this.hp = hp;
+		this.company = company;
+	}
+
 	public PersonVO(int personId, String name, String hp, String company) {
 		this.personId = personId;
 		this.name = name;
