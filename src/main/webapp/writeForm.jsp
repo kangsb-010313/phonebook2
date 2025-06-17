@@ -19,19 +19,19 @@
 		
 		<form action="http://localhost:8080/phonebook2/pbc" method="get">
 			<label>이름(name): </label>
-			<input type= "text", name="name", value="">
+			<input type= "text" name="name" value="">
 			<br>
 			
 			<label>핸드폰(hp): </label>
-			<input type= "text", name="hp", value="">
+			<input type= "text" name="hp" value="">
 			<br>
 			
 			<label>회사(company): </label>
-			<input type= "text", name="company", value="">
+			<input type= "text" name="company" value="">
 			<br>
 
 			<label>액션: </label>
-			<input type= "hidden", name="action", value="write">
+			<input type= "hidden" name="action" value="write">
 			<br>
 			
 			<button>등록</button>

@@ -130,12 +130,29 @@ public class PhonebookController extends HttpServlet {
 		}else if("mform".equals(action)) {//수정폼
 			System.out.println("수정폼");
 			
+			//2) jsp에게 화면을 그리게 한다(포워드)
+			//writeForm.jsp 포워드한다
+			RequestDispatcher rd = request.getRequestDispatcher("/modifyForm.jsp");
+			rd.forward(request, response);
 			
 	
 		////////////////////////////////////////////////////////////////////////
 		}else if("modify".equals(action)) {//수정
 			System.out.println("수정");
 			
+			//파라미터3개 꺼내기
+			String name = request.getParameter("name");
+			String hp = request.getParameter("hp");
+			String company = request.getParameter("company");
+			int personId = Integer.parseInt(request.getParameter("person_id"));
+			
+			//데이터를 묶는다
+			PersonVO personVO = new PersonVO(name, hp, company, personId);
+			System.out.println(personVO);
+			
+			//DAO를 통해서 저장시키기
+			PhonebookDAO phonebookDAO = new PhonebookDAO();
+			phonebookDAO.personUpdate(personVO);
 			
 		}
 		
