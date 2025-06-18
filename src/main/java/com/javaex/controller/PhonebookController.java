@@ -140,19 +140,8 @@ public class PhonebookController extends HttpServlet {
 		}else if("modify".equals(action)) {//수정
 			System.out.println("수정");
 			
-			//파라미터3개 꺼내기
-			String name = request.getParameter("name");
-			String hp = request.getParameter("hp");
-			String company = request.getParameter("company");
-			int personId = Integer.parseInt(request.getParameter("person_id"));
 			
-			//데이터를 묶는다
-			PersonVO personVO = new PersonVO(name, hp, company, personId);
-			System.out.println(personVO);
 			
-			//DAO를 통해서 저장시키기
-			PhonebookDAO phonebookDAO = new PhonebookDAO();
-			phonebookDAO.personUpdate(personVO);
 			
 		}
 		
