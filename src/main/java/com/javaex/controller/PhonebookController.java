@@ -123,7 +123,7 @@ public class PhonebookController extends HttpServlet {
 			
 			//리다이렉트 list 요청해주세요
 			//http://localhost:8080/phonebook2/pbc?action=list
-			//response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
+			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
 			
 			
 		////////////////////////////////////////////////////////////////////////
@@ -140,6 +140,23 @@ public class PhonebookController extends HttpServlet {
 		}else if("modify".equals(action)) {//수정
 			System.out.println("수정");
 			
+			//파라미터 꺼내기
+			String name = request.getParameter("name");
+			String hp = request.getParameter("hp");
+			String company = request.getParameter("company");
+			int personId = Integer.parseInt(request.getParameter("person_id"));
+			
+			//데이터를 묶는다
+			PersonVO personVo = new PersonVO(name, hp, company, personId);
+			System.out.println(personVo);
+			
+			//DAO를 통해서 저장시키기
+			PhonebookDAO phonebookDAO = new PhonebookDAO();
+			phonebookDAO.personUpdate(personVo);
+			
+			//리다이렉트 list 요청해주세요
+			//http://localhost:8080/phonebook2/pbc?action=list
+			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
 			
 			
 			

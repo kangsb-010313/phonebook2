@@ -196,7 +196,47 @@ public class PhonebookDAO {
 	}
 		
 	// 수정하기 //////////////////////////////////////////////	
+	public int personUpdate(PersonVO personVo) {
+	
+		System.out.println("personUpdate");
+		
+		int count = -1;
+		
+		this.connect();
+		
+		
+		try {
+			// 3. SQL문 준비 / 바인딩 / 실행
 
+			//SQL문 준비
+			String query = "";
+				   query += " update person ";
+				   query += " set name = ?, ";
+				   query += " hp = ?, ";
+				   query += " company = ? ";
+				   query += " where person_id = ? ";
+			
+			//바인딩
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, personVo.getName());
+			pstmt.setString(2, personVo.getHp());
+			pstmt.setString(3, personVo.getCompany());
+			pstmt.setInt(4, personVo.getPersonId());
+			
+			//실행
+			count = pstmt.executeUpdate();
+			
+			//4.결과처리
+			System.out.println(count + "건 수정되었습니다.");
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		
+		this.close();
+		return count;
+		
+	}
 		
 		
 	

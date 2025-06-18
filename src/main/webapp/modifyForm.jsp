@@ -31,7 +31,7 @@
 			<br>
 			
 			<label>P아이디</label>
-			<input type= "hidden" name="person_id" value="">
+			<input type= "text" name="person_id" value="">
 			<br>
 
 			<label>액션: </label>
