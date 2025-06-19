@@ -211,9 +211,9 @@ public class PhonebookDAO {
 			//SQL문 준비
 			String query = "";
 				   query += " update person ";
-				   query += " set name = ?, ";
-				   query += " hp = ?, ";
-				   query += " company = ? ";
+				   query += " set 	 name = ?, ";
+				   query += " 		 hp = ?, ";
+				   query += " 		 company = ? ";
 				   query += " where person_id = ? ";
 			
 			//바인딩
