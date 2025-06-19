@@ -30,7 +30,7 @@
 			<input type= "text" name="company" value="">
 			<br>
 
-			<label>액션: </label>
+			
 			<input type= "hidden" name="action" value="write">
 			<br>
 			
