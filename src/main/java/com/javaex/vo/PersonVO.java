@@ -25,12 +25,6 @@ public class PersonVO {
 		this.hp = hp;
 		this.company = company;
 	}	
-	public PersonVO(String name, String hp, String company, int personId) {
-		this.name = name;
-		this.hp = hp;
-		this.company = company;
-		this.personId = personId;
-	}
 	
 	
 	//메소드 gs

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.dao.PhonebookDAO;
+import com.javaex.util.WebUtil;
 import com.javaex.vo.PersonVO;
 
 @WebServlet("/pbc2")
@@ -137,28 +138,24 @@ public class PhonebookController2 extends HttpServlet {
 			
 	
 		////////////////////////////////////////////////////////////////////////
-		}else if("modify".equals(action)) {//수정
+		}else if("modify".equals(action)) {
 			System.out.println("수정");
 			
-			//파라미터 꺼내기
+			//파라미터 4개의 정보를 꺼내온다
+			int personId =  Integer.parseInt(request.getParameter("person_id"));
 			String name = request.getParameter("name");
-			String hp = request.getParameter("hp");
+			String hp =  request.getParameter("hp");
 			String company = request.getParameter("company");
-			int personId = Integer.parseInt(request.getParameter("person_id"));
 			
 			//데이터를 묶는다
-			PersonVO personVo = new PersonVO(name, hp, company, personId);
-			System.out.println(personVo);
+			PersonVO personVO = new PersonVO(personId, name, hp, company);
 			
-			//DAO를 통해서 저장시키기
-			PhonebookDAO phonebookDAO = new PhonebookDAO();
-			phonebookDAO.personUpdate(personVo);
+			//dao를 통해서 no를 주고 삭제
+			PhonebookDAO phonebookDAO= new PhonebookDAO();
+			phonebookDAO.personUpdate(personVO);
 			
-			//리다이렉트 list 요청해주세요
-			//http://localhost:8080/phonebook2/pbc?action=list
-			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
-			
-			
+			//리다이렉트 action=list
+			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
 			
 		}
 		

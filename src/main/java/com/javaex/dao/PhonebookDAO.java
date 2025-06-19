@@ -116,6 +116,55 @@ public class PhonebookDAO {
 	}//select
 	
 	
+	// 1명 정보 가져오기 //////////////////////////////////////////////
+	public PersonVO personSelectOne(int no) {
+		
+		//VO준비 (1명정보만 담아야 하니 리스트 필요없음)
+		PersonVO personVO = null;
+		
+		this.connect();
+		
+		try {
+			//3. SQL문준비 / 바인딩 / 실행
+			// SQL문준비
+			String query= "";
+			query +=" select  person_id, ";
+			query +="		  name, ";
+			query +="         hp, ";
+			query +="         company ";
+			query +=" from person ";
+			query +=" where person_id = ? ";
+			
+			// 바인딩
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			// 실행
+			rs = pstmt.executeQuery();
+			
+			//4. 결과처리
+			rs.next();
+			
+			//ResultSet에서 각각의 값을 꺼내서 자바 변수에 담는다
+			int personId = rs.getInt("person_id");
+			String name = rs.getString("name");
+			String hp = rs.getString("hp");
+			String company = rs.getString("company");
+			
+			//VO로 묶어준다
+			personVO = new PersonVO(personId, name, hp, company);
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		
+		this.close();
+		
+		return personVO;
+		
+	}
+	
+	
 	// 등록하기 //////////////////////////////////////////////
 	public int personInsert(PersonVO personVO) {
 		

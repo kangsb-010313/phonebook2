@@ -36,7 +36,6 @@
 					<td>이름(name)</td>
 					<td>
 						<%= personList.get(i).getName() %>
-						<%= personList.get(i).getPersonId() %>
 					</td>
 				</tr>
 				<tr>
@@ -49,7 +48,7 @@
 				</tr>
 				<tr>
 					<td>
-						<a href = "http://localhost:8080/phonebook2/pbc?action=mform">
+						<a href = "http://localhost:8080/phonebook2/pbc?action=mform&no=<%= personList.get(i).getPersonId() %>">
 							[수정폼으로 이동]
 						</a>
 					</td>

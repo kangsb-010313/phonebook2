@@ -87,8 +87,6 @@ public class PhonebookController extends HttpServlet {
 			PhonebookDAO phonebookDAO = new PhonebookDAO();
 			phonebookDAO.personInsert(personVO);
 			
-			
-			
 			//리다이렉트 list 요청해주세요
 			//http://localhost:8080/phonebook2/pbc?action=list
 			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
@@ -126,36 +124,41 @@ public class PhonebookController extends HttpServlet {
 			
 			
 		////////////////////////////////////////////////////////////////////////
-		}else if("mform".equals(action)) {//수정폼
+		}else if("mform".equals(action)) {
 			System.out.println("수정폼");
 			
-			//2) jsp에게 화면을 그리게 한다(포워드)
-			//writeForm.jsp 포워드한다
+			//파라미터에서  no 꺼내온다
+			int no =  Integer.parseInt(request.getParameter("no"));
+			
+			//dao를 통해서 no를 주고 삭제
+			PhonebookDAO phonebookDAO= new PhonebookDAO();
+			PersonVO personVO= phonebookDAO.personSelectOne(no);
+			
+			//request객체에 데이터를 넣어준다
+			request.setAttribute("personVo", personVO);
+			
+			//포워드
 			WebUtil.forward(request, response, "/WEB-INF/modifyForm.jsp");
 	
 		////////////////////////////////////////////////////////////////////////
-		}else if("modify".equals(action)) {//수정
+		}else if("modify".equals(action)) {
 			System.out.println("수정");
 			
-			//파라미터 꺼내기
+			//파라미터 4개의 정보를 꺼내온다
+			int personId =  Integer.parseInt(request.getParameter("person_id"));
 			String name = request.getParameter("name");
-			String hp = request.getParameter("hp");
+			String hp =  request.getParameter("hp");
 			String company = request.getParameter("company");
-			int personId = Integer.parseInt(request.getParameter("person_id"));
 			
 			//데이터를 묶는다
-			PersonVO personVo = new PersonVO(name, hp, company, personId);
-			System.out.println(personVo);
+			PersonVO personVO = new PersonVO(personId, name, hp, company);
 			
-			//DAO를 통해서 저장시키기
-			PhonebookDAO phonebookDAO = new PhonebookDAO();
-			phonebookDAO.personUpdate(personVo);
+			//dao를 통해서 no를 주고 삭제
+			PhonebookDAO phonebookDAO= new PhonebookDAO();
+			phonebookDAO.personUpdate(personVO);
 			
-			//리다이렉트 list 요청해주세요
-			//http://localhost:8080/phonebook2/pbc?action=list
+			//리다이렉트 action=list
 			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
-			
-			
 			
 		}
 		
