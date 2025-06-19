@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.dao.PhonebookDAO;
-import com.javaex.util.WebUtil;
 import com.javaex.vo.PersonVO;
 
-@WebServlet("/pbc")
-public class PhonebookController extends HttpServlet {
+@WebServlet("/pbc2")
+public class PhonebookController2 extends HttpServlet {
 	
 	//필드
 	private static final long serialVersionUID = 1L;
@@ -41,7 +40,6 @@ public class PhonebookController extends HttpServlet {
 		
 		if("list".equals(action)) { // 리스트 업무
 			System.out.println("리스트");
-			
 			//db 데이터 가져온다 --> List
 			PhonebookDAO phonebookDAO = new PhonebookDAO();
 			List<PersonVO> personList = phonebookDAO.personSelect();
@@ -55,7 +53,8 @@ public class PhonebookController extends HttpServlet {
 			
 			// 2)list.jsp에 request객체와 response객체를 보낸다
 			//*forward 포워드
-			WebUtil.forward(request,response,"/WEB-INF/list.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+			rd.forward(request, response);
 		
 		
 		////////////////////////////////////////////////////////////////////////
@@ -68,7 +67,8 @@ public class PhonebookController extends HttpServlet {
 			
 			//2) jsp에게 화면을 그리게 한다(포워드)
 			//writeForm.jsp 포워드한다
-			WebUtil.forward(request,response,"/WEB-INF/writeForm.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/writeForm.jsp");
+			rd.forward(request, response);
 			
 		////////////////////////////////////////////////////////////////////////
 		}else if("write".equals(action)) {// 등록 업무
@@ -91,7 +91,7 @@ public class PhonebookController extends HttpServlet {
 			
 			//리다이렉트 list 요청해주세요
 			//http://localhost:8080/phonebook2/pbc?action=list
-			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
 			
 			/*
 			//응답 (리스트) 하기 -------------------------------------------
@@ -101,11 +101,12 @@ public class PhonebookController extends HttpServlet {
 			//request의 Attribute영역에 데이터 넣기
 			request.setAttribute("pList", personList);
 			
+			
+			
 			//*forward 포워드
 			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
 			rd.forward(request, response);
 			*/
-			
 			
 			
 		////////////////////////////////////////////////////////////////////////
@@ -122,7 +123,7 @@ public class PhonebookController extends HttpServlet {
 			
 			//리다이렉트 list 요청해주세요
 			//http://localhost:8080/phonebook2/pbc?action=list
-			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
 			
 			
 		////////////////////////////////////////////////////////////////////////
@@ -131,7 +132,9 @@ public class PhonebookController extends HttpServlet {
 			
 			//2) jsp에게 화면을 그리게 한다(포워드)
 			//writeForm.jsp 포워드한다
-			WebUtil.forward(request, response, "/WEB-INF/modifyForm.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/modifyForm.jsp");
+			rd.forward(request, response);
+			
 	
 		////////////////////////////////////////////////////////////////////////
 		}else if("modify".equals(action)) {//수정
@@ -153,7 +156,7 @@ public class PhonebookController extends HttpServlet {
 			
 			//리다이렉트 list 요청해주세요
 			//http://localhost:8080/phonebook2/pbc?action=list
-			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
 			
 			
 			
